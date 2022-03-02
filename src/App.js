@@ -5,7 +5,7 @@ import './App.css';
 
 import Student from './pages/Student';
 import AddStudent from './pages/Addstudent';
-import Editstudent from './pages/Editstudent';
+import EditStudent from './pages/Editstudent';
 
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
     <Routes>
       <Route path="/" element={< Student/>} />
       <Route path="/add-student" element={<AddStudent/>} />
-      <Route path='/edit-student/:id' element={<Editstudent/>} />
+      <Route path='/edit-student/:id' element={<EditStudent/>} />
     </Routes>
   </BrowserRouter>
   );

@@ -17,13 +17,26 @@ class Editstudent extends Component
         });
     }
 
-    async compomentDidMount() {
+    async componentDidMount() {
         const student_id = this.props.match.params.id;
-        const res = await axios.get(`/api/edit-student/${student_id}`);
+        console.log(this);
+        const res = await axios.get(`http://localhost:8000/api/edit-student/${student_id}`);
+        if(res.data.status === 200) 
+        {
+            this.setState({
+                name: res.data.student.name,
+                course: res.data.student.course,
+                email: res.data.student.email,
+                phone: res.data.student.phone
+            });
+        }
     }
 
-    saveStudent = async (e) => {
+    updateStudent = async (e) => {
         e.preventDefault();
+
+        const student_id = this.props.match.params.id;
+        const res = await axios.get(`http://localhost:8000/api/update-student/${student_id}`, this.state);
     } 
 
     render() {
@@ -39,7 +52,7 @@ class Editstudent extends Component
                                 </h4>
                             </div>
                             <div className="card-body">
-                                <form onSubmit={this.saveStudent}>
+                                <form onSubmit={this.updateStudent}>
                                     <div className="form-group-mb-3">
                                         <label>Student Name</label>
                                         <input type="text" name="name" onChange={this.handleInput} value={this.state.name} className="form-control" />
